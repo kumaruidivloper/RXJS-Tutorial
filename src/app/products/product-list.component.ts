@@ -1,10 +1,9 @@
-import { Component, OnInit, ChangeDetectionStrategy } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 // import { Subscription } from 'rxjs';
 
-import { Product } from './product';
 import { ProductService } from './product.service';
-import { Observable, EMPTY } from 'rxjs';
+import { EMPTY } from 'rxjs';
 import { catchError } from 'rxjs/operators';
 
 @Component({
@@ -12,7 +11,7 @@ import { catchError } from 'rxjs/operators';
   styleUrls: ['./product-list.component.css'],
   changeDetection: ChangeDetectionStrategy.OnPush
 })
-export class ProductListComponent implements OnInit {
+export class ProductListComponent {
   pageTitle = 'Product List';
   errorMessage = '';
   categories;
@@ -21,22 +20,34 @@ export class ProductListComponent implements OnInit {
   // products: Product[] = [];
 
   // new assignment with async pipe
-  products$: Observable<Product[]>;
+  // products$: Observable<Product[]>;
+
+  // Declarative Approch
+  products$ = this.productService.products$
+  .pipe(
+    catchError(err => {
+      this.errorMessage = err;
+      return EMPTY;
+    })
+  );
 
   // un-used removed
   // sub: Subscription;
 
   constructor(private productService: ProductService) { }
 
-  ngOnInit(): void {
-    // Error Handling
-    this.products$ = this.productService.getProducts()
-    .pipe(
-      catchError(err => {
-        this.errorMessage = err;
-        return EMPTY;
-      })
-    );
+  // Declarative method code got removed
+
+  // ngOnInit(): void {
+  //   // Error Handling
+  //   this.products$ = this.productService.getProducts()
+  //   .pipe(
+  //     catchError(err => {
+  //       this.errorMessage = err;
+  //       return EMPTY;
+  //     })
+  //   );
+
     // Below code Not reqieurd if we do Async Pipe
 
     // this.sub = this.productService.getProducts()
@@ -44,7 +55,6 @@ export class ProductListComponent implements OnInit {
     //     products => this.products = products,
     //     error => this.errorMessage = error
     //   );
-  }
 
   // Below code Not reqieurd if we do Async Pipe
   // ngOnDestroy(): void {
@@ -53,9 +63,10 @@ export class ProductListComponent implements OnInit {
 
   onAdd(): void {
     console.log('Not yet implemented');
-  }
+  };
 
   onSelected(categoryId: string): void {
     console.log('Not yet implemented');
   }
 }
+

@@ -12,19 +12,27 @@ import { SupplierService } from '../suppliers/supplier.service';
   providedIn: 'root'
 })
 export class ProductService {
-  private productsUrl = 'api/product';
+  private productsUrl = 'api/products';
   private suppliersUrl = this.supplierService.suppliersUrl;
+
+  // Declarative Method Approch below removed code added here
+  products$ = this.http.get<Product[]>(this.productsUrl)
+    .pipe(
+      tap(data => console.log('Products: ', JSON.stringify(data))),
+      catchError(this.handleError)
+    );
 
   constructor(private http: HttpClient,
               private supplierService: SupplierService) { }
 
-  getProducts(): Observable<Product[]> {
-    return this.http.get<Product[]>(this.productsUrl)
-      .pipe(
-        tap(data => console.log('Products: ', JSON.stringify(data))),
-        catchError(this.handleError)
-      );
-  }
+  // Declarative Method Approch below code got removed
+  // getProducts(): Observable<Product[]> {
+  //   return this.http.get<Product[]>(this.productsUrl)
+  //     .pipe(
+  //       tap(data => console.log('Products: ', JSON.stringify(data))),
+  //       catchError(this.handleError)
+  //     );
+  // }
 
   private fakeProduct() {
     return {
