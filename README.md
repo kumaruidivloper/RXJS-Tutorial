@@ -20,5 +20,11 @@
 ## How Is Rxjs Used in Angular?
 ![006_How_Is_Rxjs_Used_in_Angular_1](https://user-images.githubusercontent.com/30646609/61514431-ae816580-aa1d-11e9-8ed1-d31fec81a340.JPG)
 
+![006_How_Is_Rxjs_Used_in_Angular_2](https://user-images.githubusercontent.com/30646609/61514432-af19fc00-aa1d-11e9-856b-9015da6f43d0.JPG)
+
+![006_How_Is_Rxjs_Used_in_Angular_3](https://user-images.githubusercontent.com/30646609/61514433-afb29280-aa1d-11e9-99ab-25601db0f54a.JPG)
+
+
+
 
 
