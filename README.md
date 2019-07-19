@@ -14,3 +14,11 @@
 ## Why Rxjs Insted Of
 ![004_Why_Rxjs_Insted_Of](https://user-images.githubusercontent.com/30646609/61514286-5c404480-aa1d-11e9-9b12-172f663c309d.JPG)
 
+## Why Rxjs?
+![005_Why_Rxjs](https://user-images.githubusercontent.com/30646609/61514430-ae816580-aa1d-11e9-8b4b-de79624f5d61.JPG)
+
+## How Is Rxjs Used in Angular?
+![006_How_Is_Rxjs_Used_in_Angular_1](https://user-images.githubusercontent.com/30646609/61514431-ae816580-aa1d-11e9-8ed1-d31fec81a340.JPG)
+
+
+
