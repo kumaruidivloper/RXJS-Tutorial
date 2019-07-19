@@ -6,5 +6,5 @@
 ## What is Rxjs?
 ![002_What is Rxjs](https://user-images.githubusercontent.com/30646609/61514216-24d19800-aa1d-11e9-88ab-5aa4441fbb39.JPG)
 
-
+![002_What is Rxjs_2](https://user-images.githubusercontent.com/30646609/61514265-46cb1a80-aa1d-11e9-86ad-fa2827a44d73.JPG)
 
