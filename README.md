@@ -143,11 +143,10 @@
 ## Rxjs Features
 ![028_Rxjs_Features](https://user-images.githubusercontent.com/30646609/61514555-e2f52180-aa1d-11e9-9a66-244cb4313dd4.JPG)
 
+![030_Rxjs_Features](https://user-images.githubusercontent.com/30646609/61514558-e4bee500-aa1d-11e9-99e0-1d50aa42d957.JPG)
+
 ## Going Reactive
 ![029_Going_Reactive](https://user-images.githubusercontent.com/30646609/61514556-e38db800-aa1d-11e9-9609-eb2ed9632f91.JPG)
-
-## Rxjs_Features
-![030_Rxjs_Features](https://user-images.githubusercontent.com/30646609/61514558-e4bee500-aa1d-11e9-99e0-1d50aa42d957.JPG)
 
 ## Async Pipe
 ![031_Async_Pipe](https://user-images.githubusercontent.com/30646609/61514559-e4bee500-aa1d-11e9-8df9-121d13a0df0d.JPG)
