@@ -1,8 +1,6 @@
-# Angular-RxJS
-Find the associated Pluralsight course here: https://app.pluralsight.com/library/courses/rxjs-angular-reactive-development/table-of-contents
+## Angular-RxJS-Tutorial
 
-`APM-Start`: The starter files for the course. **Use this to code along with the course**.
+# Goals for this course
+![001_Goals_for_this_course](https://user-images.githubusercontent.com/30646609/61514197-1d11f380-aa1d-11e9-8df6-fbc978cf66ab.JPG)
 
-`APM-Final`: The completed files. Use this to see the completed solution from the course.
 
-`APM-WithExtras`: The completed files with some extra code. Use this to see some additional techniques not included in the course.
