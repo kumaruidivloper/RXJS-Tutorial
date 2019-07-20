@@ -1,39 +1,19 @@
-# Caching Observables
+# Higher Order Observables
 
-## Caching Observables
-![002_Module_Overview](https://user-images.githubusercontent.com/30646609/61580452-1f18a700-ab30-11e9-8483-c56664a4be68.JPG)
+## Observables
+![001_Observables](https://user-images.githubusercontent.com/30646609/61581185-ae29bd00-ab38-11e9-9db7-f0201d3b49b1.JPG)
+
+## Higher Order Observables
+![002_Higher-Order-Observables](https://user-images.githubusercontent.com/30646609/61581186-aec25380-ab38-11e9-9920-1fa0a1ebc5bf.JPG)
+![002_Higher-Order-Observables-1](https://user-images.githubusercontent.com/30646609/61581188-aec25380-ab38-11e9-83fd-88d70dbc5db9.JPG)
+![002_Higher-Order-Observables-2](https://user-images.githubusercontent.com/30646609/61581189-aec25380-ab38-11e9-8347-6a94a6c8d00a.JPG)
 
 ## RxJS Features
-![003_RxJS_Features](https://user-images.githubusercontent.com/30646609/61580453-1f18a700-ab30-11e9-9756-a27fd8046e70.JPG)
+![003_RxJS_Features](https://user-images.githubusercontent.com/30646609/61581190-aec25380-ab38-11e9-92b2-1df676a25bf0.JPG)
 
-## Retrieving Data
-![004_Retrieving_Data](https://user-images.githubusercontent.com/30646609/61580454-1f18a700-ab30-11e9-9db5-870c186e7fb9.JPG)
+## Higher Order Mapping Operators
+![004_Higher-Order-Mapping-Operators](https://user-images.githubusercontent.com/30646609/61581191-af5aea00-ab38-11e9-95fd-7f7e27bc3768.JPG)
 
-## Advantages Of Caching Data
-![005_Advantages_Of_Caching_Data](https://user-images.githubusercontent.com/30646609/61580455-1fb13d80-ab30-11e9-8eaa-691102731e7c.JPG)
-
-## Classic Caching Pattern
-![006_Classic_Caching_Pattern](https://user-images.githubusercontent.com/30646609/61580456-1fb13d80-ab30-11e9-8711-ac45928d6aa6.JPG)
-
-## Declarative Caching Pattern
-![007_Declarative_Caching_Pattern](https://user-images.githubusercontent.com/30646609/61580457-1fb13d80-ab30-11e9-822a-5b816dae0578.JPG)
-
-## RxJS Operator[shareReplay]
-![008_RxJS_Operator- shareReplay](https://user-images.githubusercontent.com/30646609/61580458-1fb13d80-ab30-11e9-81a5-3a37963ce05c.JPG)
-
-## Marble Diagram [shareReplay]
-![009_Marble_Diagram shareReplay](https://user-images.githubusercontent.com/30646609/61580459-2049d400-ab30-11e9-8159-1da4a4a40fde.JPG)
-![009_Marble_Diagram shareReplay -1](https://user-images.githubusercontent.com/30646609/61580460-2049d400-ab30-11e9-93c0-dcd24006616b.JPG)
-![009_Marble_Diagram shareReplay -2](https://user-images.githubusercontent.com/30646609/61580461-2049d400-ab30-11e9-8bd0-ea9181d16b39.JPG)
-![009_Marble_Diagram shareReplay -3](https://user-images.githubusercontent.com/30646609/61580462-2049d400-ab30-11e9-9fe9-fa7a0be298d4.JPG)
-![009_Marble_Diagram shareReplay -4](https://user-images.githubusercontent.com/30646609/61580463-20e26a80-ab30-11e9-94ce-a3fd512a5fa1.JPG)
-![009_Marble_Diagram shareReplay -5](https://user-images.githubusercontent.com/30646609/61580464-20e26a80-ab30-11e9-9afa-88ff99f87cc6.JPG)
-
-## RxJS Operator [shareReplay]
-![010_RxJS_Operator shareReplay](https://user-images.githubusercontent.com/30646609/61580465-20e26a80-ab30-11e9-83aa-e21dcd87750a.JPG)
-
-## Caching Observables
-![011_Caching_Observables](https://user-images.githubusercontent.com/30646609/61580466-20e26a80-ab30-11e9-938a-e014e2bbd5a1.JPG)
-
-## Cache Invalidation
-![012_Cache_Invalidation](https://user-images.githubusercontent.com/30646609/61580467-217b0100-ab30-11e9-87a2-30c2990bbf15.JPG)
+## Higher Order RxJS Mapping Operators
+![005_Higher-Order-RxJS-Mapping-Operators](https://user-images.githubusercontent.com/30646609/61581192-af5aea00-ab38-11e9-974f-ca6993cc4096.JPG)
+![005_Higher-Order-RxJS-Mapping-Operators-1](https://user-images.githubusercontent.com/30646609/61581193-af5aea00-ab38-11e9-913b-805d8259ee4c.JPG)
