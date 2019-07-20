@@ -11,12 +11,12 @@ import { EMPTY } from 'rxjs';
   selector: 'pm-product-list',
   templateUrl: './product-list-alt.component.html'
 })
-export class ProductListAltComponent implements OnInit, OnDestroy {
+export class ProductListAltComponent {
   pageTitle = 'Products';
   errorMessage = '';
   selectedProductId;
 
-  products$ = this.productService.products$
+  products$ = this.productService.productsWithCategory$
   .pipe(
     catchError(err => {
       this.errorMessage = err;
