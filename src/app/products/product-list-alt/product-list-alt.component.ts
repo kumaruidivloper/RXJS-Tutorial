@@ -1,5 +1,5 @@
 // import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Component } from '@angular/core';
+import { Component, ChangeDetectionStrategy } from '@angular/core';
 // import { Subscription } from 'rxjs';
 
 import { Product } from '../product';
@@ -9,12 +9,13 @@ import { EMPTY } from 'rxjs';
 
 @Component({
   selector: 'pm-product-list',
-  templateUrl: './product-list-alt.component.html'
+  templateUrl: './product-list-alt.component.html',
+  changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductListAltComponent {
   pageTitle = 'Products';
   errorMessage = '';
-  selectedProductId;
+  // selectedProductId;
 
   products$ = this.productService.productsWithCategory$
   .pipe(
@@ -23,6 +24,8 @@ export class ProductListAltComponent {
       return EMPTY;
     })
   );
+
+  selectedProduct$ = this.productService.selectedProduct$;
   // products: Product[] = [];
   // sub: Subscription;
 
@@ -40,6 +43,7 @@ export class ProductListAltComponent {
   // }
 
   onSelected(productId: number): void {
-    console.log('Not yet implemented');
+    // console.log('Not yet implemented');
+    this.productService.selectedProductChanged(productId);
   }
 }
