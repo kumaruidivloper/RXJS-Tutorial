@@ -23,7 +23,7 @@ export class ProductListComponent {
   // products$: Observable<Product[]>;
 
   // Declarative Approch
-  products$ = this.productService.products$
+  products$ = this.productService.productsWithCategory$
   .pipe(
     catchError(err => {
       this.errorMessage = err;
