@@ -3,8 +3,9 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 // import { Subscription } from 'rxjs';
 
 import { ProductService } from './product.service';
-import { EMPTY } from 'rxjs';
+import { EMPTY, Subject, combineLatest } from 'rxjs';
 import { catchError, map } from 'rxjs/operators';
+import { ProductCategoryService } from '../product-categories/product-category.service';
 
 @Component({
   templateUrl: './product-list.component.html',
@@ -15,7 +16,11 @@ export class ProductListComponent {
   pageTitle = 'Product List';
   errorMessage = '';
   categories;
-  selectedCategoryId = 1;
+  // selectedCategoryId = 1;
+
+  // Subject for dynamic drpdown Selected Id
+  private categorySelectedSubject = new Subject<number>();
+  categorySelectedAction$ = this.categorySelectedSubject.asObservable();
 
   // previous assignment with-out async pipe
   // products: Product[] = [];
@@ -24,27 +29,43 @@ export class ProductListComponent {
   // products$: Observable<Product[]>;
 
   // Declarative Approch
-  products$ = this.productService.productsWithCategory$
+  products$ = combineLatest([
+    this.productService.productsWithCategory$,
+    this.categorySelectedAction$
+  ])
   .pipe(
+    map(([products, selectedCategoryId]) =>
+      products.filter(product =>
+        selectedCategoryId ? product.categoryId === selectedCategoryId : true
+    )),
     catchError(err => {
       this.errorMessage = err;
       return EMPTY;
     })
   );
 
-  // Added For Filtering
-  productsSimpleFilter$ = this.productService.productsWithCategory$
+  categories$ = this.productCategoryService.productCategories$
     .pipe(
-      map(products =>
-          products.filter(product =>
-              this.selectedCategoryId ? product.categoryId === this.selectedCategoryId : true
-            ))
+      catchError(err => {
+        this.errorMessage = err;
+        return EMPTY;
+      })
     );
+
+  // Added For Filtering
+  // productsSimpleFilter$ = this.productService.productsWithCategory$
+  //   .pipe(
+  //     map(products =>
+  //         products.filter(product =>
+  //             this.selectedCategoryId ? product.categoryId === this.selectedCategoryId : true
+  //           ))
+  //   );
 
   // un-used removed
   // sub: Subscription;
 
-  constructor(private productService: ProductService) { }
+  constructor(private productService: ProductService,
+              private productCategoryService: ProductCategoryService) { }
 
   // Declarative method code got removed
 
@@ -76,7 +97,9 @@ export class ProductListComponent {
   };
 
   onSelected(categoryId: string): void {
-    console.log('Not yet implemented');
+    // console.log('Not yet implemented');
+    // this.selectedCategoryId = +categoryId;
+    this.categorySelectedSubject.next(+categoryId);
   }
 }
 
