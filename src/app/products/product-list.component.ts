@@ -4,7 +4,7 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 
 import { ProductService } from './product.service';
 import { EMPTY } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { catchError } from 'rxjs/operators';
 
 @Component({
   templateUrl: './product-list.component.html',
@@ -31,15 +31,6 @@ export class ProductListComponent {
       return EMPTY;
     })
   );
-
-  // Added For filter
-  productsSimpleFilter$ = this.productService.productsWithCategory$
-    .pipe(
-      map(products =>
-          products.filter(product =>
-              this.selectedCategoryId ? product.categoryId === this.selectedCategoryId : true
-            ))
-    );
 
   // un-used removed
   // sub: Subscription;
