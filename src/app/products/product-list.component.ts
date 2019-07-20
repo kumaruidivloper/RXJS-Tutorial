@@ -15,7 +15,6 @@ export class ProductListComponent {
   pageTitle = 'Product List';
   errorMessage = '';
   categories;
-  selectedCategoryId = 1;
 
   // previous assignment with-out async pipe
   // products: Product[] = [];
