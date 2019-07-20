@@ -3,8 +3,8 @@ import { Component, ChangeDetectionStrategy } from '@angular/core';
 // import { Subscription } from 'rxjs';
 
 import { ProductService } from './product.service';
-import { EMPTY, Subject, combineLatest } from 'rxjs';
-import { catchError, map } from 'rxjs/operators';
+import { EMPTY, Subject, combineLatest, BehaviorSubject } from 'rxjs';
+import { catchError, map, startWith } from 'rxjs/operators';
 import { ProductCategoryService } from '../product-categories/product-category.service';
 
 @Component({
@@ -19,7 +19,7 @@ export class ProductListComponent {
   // selectedCategoryId = 1;
 
   // Subject for dynamic drpdown Selected Id
-  private categorySelectedSubject = new Subject<number>();
+  private categorySelectedSubject = new BehaviorSubject<number>(0);
   categorySelectedAction$ = this.categorySelectedSubject.asObservable();
 
   // previous assignment with-out async pipe
@@ -32,6 +32,9 @@ export class ProductListComponent {
   products$ = combineLatest([
     this.productService.productsWithCategory$,
     this.categorySelectedAction$
+    // .pipe(
+    //   startWith(0)
+    // )
   ])
   .pipe(
     map(([products, selectedCategoryId]) =>
