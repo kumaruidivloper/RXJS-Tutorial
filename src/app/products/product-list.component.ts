@@ -30,7 +30,7 @@ export class ProductListComponent {
 
   // Declarative Approch
   products$ = combineLatest([
-    this.productService.productsWithCategory$,
+    this.productService.productsWithAdd$,
     this.categorySelectedAction$
     // .pipe(
     //   startWith(0)
@@ -96,8 +96,9 @@ export class ProductListComponent {
   // }
 
   onAdd(): void {
-    console.log('Not yet implemented');
-  };
+    // console.log('Not yet implemented');
+    this.productService.addProduct();
+  }
 
   onSelected(categoryId: string): void {
     // console.log('Not yet implemented');
