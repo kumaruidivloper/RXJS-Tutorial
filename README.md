@@ -1,19 +1,19 @@
-# Higher Order Observables
+# RxJS Operator [concatMap]
 
-## Observables
-![001_Observables](https://user-images.githubusercontent.com/30646609/61581185-ae29bd00-ab38-11e9-9db7-f0201d3b49b1.JPG)
+## RxJS Operator [concatMap]
+![001_RxJS_Operator concatMap](https://user-images.githubusercontent.com/30646609/61589174-ff32c300-abc3-11e9-9819-551e0b045b5a.JPG)
 
-## Higher Order Observables
-![002_Higher-Order-Observables](https://user-images.githubusercontent.com/30646609/61581186-aec25380-ab38-11e9-9920-1fa0a1ebc5bf.JPG)
-![002_Higher-Order-Observables-1](https://user-images.githubusercontent.com/30646609/61581188-aec25380-ab38-11e9-83fd-88d70dbc5db9.JPG)
-![002_Higher-Order-Observables-2](https://user-images.githubusercontent.com/30646609/61581189-aec25380-ab38-11e9-8347-6a94a6c8d00a.JPG)
+## Marble Diagram [concatMap]
+![002_Marble_Diagram concatMap](https://user-images.githubusercontent.com/30646609/61589175-ff32c300-abc3-11e9-82c5-ffb826561df1.JPG)
+![002_Marble_Diagram concatMap -1](https://user-images.githubusercontent.com/30646609/61589176-ff32c300-abc3-11e9-8ae7-fbe3da56ba2e.JPG)
+![002_Marble_Diagram concatMap -2](https://user-images.githubusercontent.com/30646609/61589178-ffcb5980-abc3-11e9-91e1-a26232dd338a.JPG)
+![002_Marble_Diagram concatMap -3](https://user-images.githubusercontent.com/30646609/61589171-fe9a2c80-abc3-11e9-8177-2e676741bcf0.JPG)
 
-## RxJS Features
-![003_RxJS_Features](https://user-images.githubusercontent.com/30646609/61581190-aec25380-ab38-11e9-92b2-1df676a25bf0.JPG)
+## Formal Def [concatmap]
+![003_Formal_Def concatmap](https://user-images.githubusercontent.com/30646609/61589172-fe9a2c80-abc3-11e9-9bbc-f86e9f7cfaf4.JPG)
 
-## Higher Order Mapping Operators
-![004_Higher-Order-Mapping-Operators](https://user-images.githubusercontent.com/30646609/61581191-af5aea00-ab38-11e9-95fd-7f7e27bc3768.JPG)
+## Use [concatmap]
+![004_Use_ concatmap](https://user-images.githubusercontent.com/30646609/61589173-ff32c300-abc3-11e9-8e5d-b9d956cc7567.JPG)
 
-## Higher Order RxJS Mapping Operators
-![005_Higher-Order-RxJS-Mapping-Operators](https://user-images.githubusercontent.com/30646609/61581192-af5aea00-ab38-11e9-974f-ca6993cc4096.JPG)
-![005_Higher-Order-RxJS-Mapping-Operators-1](https://user-images.githubusercontent.com/30646609/61581193-af5aea00-ab38-11e9-913b-805d8259ee4c.JPG)
+
+
