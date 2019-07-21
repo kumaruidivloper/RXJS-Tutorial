@@ -1,17 +1,18 @@
-# RxJS Operator [mergeMap]
+# RxJS Operator [switchMap]
 
-## RxJS Operator [mergeMap]
-![001_RxJS_Operator mergeMap](https://user-images.githubusercontent.com/30646609/61590172-4031d400-abd2-11e9-86f7-508adf01e917.JPG)
+## RxJS Operator [switchMap]
+![001_RxJS_Operator switchMap](https://user-images.githubusercontent.com/30646609/61590327-11692d00-abd5-11e9-9400-777ddbe8b38b.JPG)
 
-## Marble Diagram [mergeMap]
-![002_Marble_Diagram mergeMap](https://user-images.githubusercontent.com/30646609/61590173-4031d400-abd2-11e9-867e-15f0ee345bf7.JPG)
-![002_Marble_Diagram mergeMap -1](https://user-images.githubusercontent.com/30646609/61590169-3f993d80-abd2-11e9-8ca2-cf77faac3050.JPG)
+## Marbel Diagram [switchMap]
+![002_Marbel_Diagram- switchMap](https://user-images.githubusercontent.com/30646609/61590324-10d09680-abd5-11e9-9bfd-d99f316d2907.JPG)
 
-## RxJS Operator [mergMap-or-flatMap]
-![003_RxJS_Operator mergMap-or-flatMap](https://user-images.githubusercontent.com/30646609/61590170-3f993d80-abd2-11e9-8841-9687fa7c8a7e.JPG)
+## Formal Def [switchMap]
+![003_Formal_Def- switchMap](https://user-images.githubusercontent.com/30646609/61590325-11692d00-abd5-11e9-8a6f-72097c5aef8e.JPG)
 
-## Use [mergMap]
-![004_Use_ mergMap](https://user-images.githubusercontent.com/30646609/61590171-4031d400-abd2-11e9-81a6-62caf430d7cd.JPG)
+## Use [switchMap]
+![004_Use_ switchMap](https://user-images.githubusercontent.com/30646609/61590326-11692d00-abd5-11e9-9c7e-ac008dd770af.JPG)
+
+
 
 
 
