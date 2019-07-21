@@ -1,19 +1,20 @@
-# RxJS Operator [concatMap]
+# RxJS Operator [mergeMap]
 
-## RxJS Operator [concatMap]
-![001_RxJS_Operator concatMap](https://user-images.githubusercontent.com/30646609/61589174-ff32c300-abc3-11e9-9819-551e0b045b5a.JPG)
+## RxJS Operator [mergeMap]
+![001_RxJS_Operator mergeMap](https://user-images.githubusercontent.com/30646609/61590172-4031d400-abd2-11e9-86f7-508adf01e917.JPG)
 
-## Marble Diagram [concatMap]
-![002_Marble_Diagram concatMap](https://user-images.githubusercontent.com/30646609/61589175-ff32c300-abc3-11e9-82c5-ffb826561df1.JPG)
-![002_Marble_Diagram concatMap -1](https://user-images.githubusercontent.com/30646609/61589176-ff32c300-abc3-11e9-8ae7-fbe3da56ba2e.JPG)
-![002_Marble_Diagram concatMap -2](https://user-images.githubusercontent.com/30646609/61589178-ffcb5980-abc3-11e9-91e1-a26232dd338a.JPG)
-![002_Marble_Diagram concatMap -3](https://user-images.githubusercontent.com/30646609/61589171-fe9a2c80-abc3-11e9-8177-2e676741bcf0.JPG)
+## Marble Diagram [mergeMap]
+![002_Marble_Diagram mergeMap](https://user-images.githubusercontent.com/30646609/61590173-4031d400-abd2-11e9-867e-15f0ee345bf7.JPG)
+![002_Marble_Diagram mergeMap -1](https://user-images.githubusercontent.com/30646609/61590169-3f993d80-abd2-11e9-8ca2-cf77faac3050.JPG)
 
-## Formal Def [concatmap]
-![003_Formal_Def concatmap](https://user-images.githubusercontent.com/30646609/61589172-fe9a2c80-abc3-11e9-9bbc-f86e9f7cfaf4.JPG)
+## RxJS Operator [mergMap-or-flatMap]
+![003_RxJS_Operator mergMap-or-flatMap](https://user-images.githubusercontent.com/30646609/61590170-3f993d80-abd2-11e9-8841-9687fa7c8a7e.JPG)
 
-## Use [concatmap]
-![004_Use_ concatmap](https://user-images.githubusercontent.com/30646609/61589173-ff32c300-abc3-11e9-8e5d-b9d956cc7567.JPG)
+## Use [mergMap]
+![004_Use_ mergMap](https://user-images.githubusercontent.com/30646609/61590171-4031d400-abd2-11e9-81a6-62caf430d7cd.JPG)
+
+
+
 
 
 
