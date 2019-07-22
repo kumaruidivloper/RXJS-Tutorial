@@ -1,13 +1,14 @@
-# Recap Of Higher Order Observable
+# Combining Data Stream [Get In All]
 
-## Recap Of Higher Order Observable
-![001_Recap_Of-Higher-Order-Observable](https://user-images.githubusercontent.com/30646609/61611905-b12cc680-ac7a-11e9-9a66-25a21710d65f.JPG)
+## Module_Overview
+![001_Module_Overview](https://user-images.githubusercontent.com/30646609/61614080-7d549f80-ac80-11e9-9f64-a4b322a52915.JPG)
 
-## Recap Of Higher Order Mapping
-![002_Recap_Of-Higher-Order-Mapping](https://user-images.githubusercontent.com/30646609/61611906-b12cc680-ac7a-11e9-8a4e-a04b5655208f.JPG)
+## Related Data Streams
+![002_Related_Data_Streams](https://user-images.githubusercontent.com/30646609/61614076-7c237280-ac80-11e9-8449-6ac703c039b1.JPG)
+![002_Related_Data_Streams_1](https://user-images.githubusercontent.com/30646609/61614077-7cbc0900-ac80-11e9-866e-d872c98a4327.JPG)
+![002_Related_Data_Streams_2](https://user-images.githubusercontent.com/30646609/61614079-7cbc0900-ac80-11e9-8c93-31eb7249bd7f.JPG)
 
-## Higher Order Mapping Operators
-![003_Higher-Order-Mapping-Operators](https://user-images.githubusercontent.com/30646609/61611908-b1c55d00-ac7a-11e9-95bd-cf0a2dbfb940.JPG)
+
 
 
 
