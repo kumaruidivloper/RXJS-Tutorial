@@ -1,16 +1,13 @@
-# RxJS Operator [switchMap]
+# Recap Of Higher Order Observable
 
-## RxJS Operator [switchMap]
-![001_RxJS_Operator switchMap](https://user-images.githubusercontent.com/30646609/61590327-11692d00-abd5-11e9-9400-777ddbe8b38b.JPG)
+## Recap Of Higher Order Observable
+![001_Recap_Of-Higher-Order-Observable](https://user-images.githubusercontent.com/30646609/61611905-b12cc680-ac7a-11e9-9a66-25a21710d65f.JPG)
 
-## Marbel Diagram [switchMap]
-![002_Marbel_Diagram- switchMap](https://user-images.githubusercontent.com/30646609/61590324-10d09680-abd5-11e9-9bfd-d99f316d2907.JPG)
+## Recap Of Higher Order Mapping
+![002_Recap_Of-Higher-Order-Mapping](https://user-images.githubusercontent.com/30646609/61611906-b12cc680-ac7a-11e9-8a4e-a04b5655208f.JPG)
 
-## Formal Def [switchMap]
-![003_Formal_Def- switchMap](https://user-images.githubusercontent.com/30646609/61590325-11692d00-abd5-11e9-8a6f-72097c5aef8e.JPG)
-
-## Use [switchMap]
-![004_Use_ switchMap](https://user-images.githubusercontent.com/30646609/61590326-11692d00-abd5-11e9-9c7e-ac008dd770af.JPG)
+## Higher Order Mapping Operators
+![003_Higher-Order-Mapping-Operators](https://user-images.githubusercontent.com/30646609/61611908-b1c55d00-ac7a-11e9-95bd-cf0a2dbfb940.JPG)
 
 
 
