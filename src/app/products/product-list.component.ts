@@ -1,10 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
-// import { Subscription } from 'rxjs';
+import { combineLatest, BehaviorSubject, EMPTY, Subject } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
 
 import { ProductService } from './product.service';
-import { EMPTY, Subject, combineLatest, BehaviorSubject } from 'rxjs';
-import { catchError, map, startWith } from 'rxjs/operators';
 import { ProductCategoryService } from '../product-categories/product-category.service';
 
 @Component({
@@ -14,96 +13,58 @@ import { ProductCategoryService } from '../product-categories/product-category.s
 })
 export class ProductListComponent {
   pageTitle = 'Product List';
-  errorMessage = '';
-  categories;
-  // selectedCategoryId = 1;
+  private errorMessageSubject = new Subject<string>();
+  errorMessage$ = this.errorMessageSubject.asObservable();
 
-  // Subject for dynamic drpdown Selected Id
+  // Action stream
   private categorySelectedSubject = new BehaviorSubject<number>(0);
   categorySelectedAction$ = this.categorySelectedSubject.asObservable();
 
-  // previous assignment with-out async pipe
-  // products: Product[] = [];
-
-  // new assignment with async pipe
-  // products$: Observable<Product[]>;
-
-  // Declarative Approch
+  // Merge Data stream with Action stream
+  // To filter to the selected category
   products$ = combineLatest([
     this.productService.productsWithAdd$,
     this.categorySelectedAction$
-    // .pipe(
-    //   startWith(0)
-    // )
   ])
-  .pipe(
-    map(([products, selectedCategoryId]) =>
-      products.filter(product =>
-        selectedCategoryId ? product.categoryId === selectedCategoryId : true
-    )),
-    catchError(err => {
-      this.errorMessage = err;
-      return EMPTY;
-    })
-  );
-
-  categories$ = this.productCategoryService.productCategories$
     .pipe(
+      map(([products, selectedCategoryId]) =>
+        products.filter(product =>
+          selectedCategoryId ? product.categoryId === selectedCategoryId : true
+        )),
       catchError(err => {
-        this.errorMessage = err;
+        this.errorMessageSubject.next(err);
         return EMPTY;
       })
     );
 
-  // Added For Filtering
-  // productsSimpleFilter$ = this.productService.productsWithCategory$
-  //   .pipe(
-  //     map(products =>
-  //         products.filter(product =>
-  //             this.selectedCategoryId ? product.categoryId === this.selectedCategoryId : true
-  //           ))
-  //   );
+  // Categories for drop down list
+  categories$ = this.productCategoryService.productCategories$
+    .pipe(
+      catchError(err => {
+        this.errorMessageSubject.next(err);
+        return EMPTY;
+      })
+    );
 
-  // un-used removed
-  // sub: Subscription;
+  // Combine the streams for the view
+  vm$ = combineLatest([
+    this.products$,
+    this.categories$
+  ])
+    .pipe(
+      map(([products, categories]) =>
+        ({ products, categories }))
+    );
 
   constructor(private productService: ProductService,
               private productCategoryService: ProductCategoryService) { }
 
-  // Declarative method code got removed
-
-  // ngOnInit(): void {
-  //   // Error Handling
-  //   this.products$ = this.productService.getProducts()
-  //   .pipe(
-  //     catchError(err => {
-  //       this.errorMessage = err;
-  //       return EMPTY;
-  //     })
-  //   );
-
-    // Below code Not reqieurd if we do Async Pipe
-
-    // this.sub = this.productService.getProducts()
-    //   .subscribe(
-    //     products => this.products = products,
-    //     error => this.errorMessage = error
-    //   );
-
-  // Below code Not reqieurd if we do Async Pipe
-  // ngOnDestroy(): void {
-  //   this.sub.unsubscribe();
-  // }
-
   onAdd(): void {
-    // console.log('Not yet implemented');
     this.productService.addProduct();
   }
 
   onSelected(categoryId: string): void {
-    // console.log('Not yet implemented');
-    // this.selectedCategoryId = +categoryId;
     this.categorySelectedSubject.next(+categoryId);
   }
-}
 
+}

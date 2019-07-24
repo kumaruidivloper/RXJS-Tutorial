@@ -1,8 +1,9 @@
 import { Component, ChangeDetectionStrategy } from '@angular/core';
 
+import { combineLatest, EMPTY, Subject } from 'rxjs';
+import { catchError, map, filter, tap } from 'rxjs/operators';
+
 import { ProductService } from '../product.service';
-import { catchError, map, filter } from 'rxjs/operators';
-import { EMPTY, Subject, combineLatest } from 'rxjs';
 import { Product } from '../product';
 
 @Component({
@@ -11,35 +12,35 @@ import { Product } from '../product';
   changeDetection: ChangeDetectionStrategy.OnPush
 })
 export class ProductDetailComponent {
-  // pageTitle = 'Product Detail';
   private errorMessageSubject = new Subject<string>();
-  errorMessage = '';
+  errorMessage$ = this.errorMessageSubject.asObservable();
 
-  // Stream-1 product
+  // Product to display
   product$ = this.productService.selectedProduct$
     .pipe(
       catchError(err => {
-        this.errorMessage = err;
+        this.errorMessageSubject.next(err);
         return EMPTY;
       })
     );
 
-  // Stream-2 product-Title
+  // Set the page title
   pageTitle$ = this.product$
-      .pipe(
-        map((p: Product) => p ? `Product Detail for: ${p.productName}` : null )
-      );
+    .pipe(
+      map((p: Product) =>
+        p ? `Product Detail for: ${p.productName}` : null)
+    );
 
-  // Stream-3 product-Supplier
+  // Suppliers for this product
   productSuppliers$ = this.productService.selectedProductSuppliers$
-  .pipe(
-    catchError(err => {
-      this.errorMessageSubject.next(err);
-      return EMPTY;
-    })
-  );
+    .pipe(
+      catchError(err => {
+        this.errorMessageSubject.next(err);
+        return EMPTY;
+      }));
 
-  // Combining Stream-1/2/3
+  // Create a combined stream with the data used in the view
+  // Use filter to skip if the product is null
   vm$ = combineLatest([
     this.product$,
     this.productSuppliers$,
@@ -50,7 +51,6 @@ export class ProductDetailComponent {
       map(([product, productSuppliers, pageTitle]) =>
         ({ product, productSuppliers, pageTitle }))
     );
-
 
   constructor(private productService: ProductService) { }
 

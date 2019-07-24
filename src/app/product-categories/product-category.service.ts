@@ -2,9 +2,9 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { throwError } from 'rxjs';
+import { catchError, tap, shareReplay, mergeAll, pluck, distinct, toArray } from 'rxjs/operators';
 
 import { ProductCategory } from './product-category';
-import { catchError, tap, shareReplay } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -12,12 +12,30 @@ import { catchError, tap, shareReplay } from 'rxjs/operators';
 export class ProductCategoryService {
   private productCategoriesUrl = 'api/productCategories';
 
+  // All product categories
   productCategories$ = this.http.get<ProductCategory[]>(this.productCategoriesUrl)
-  .pipe(
-    tap(data => console.log('categories', JSON.stringify(data))),
-    shareReplay(1),
-    catchError(this.handleError)
-  );
+    .pipe(
+      tap(data => console.log('categories', JSON.stringify(data))),
+      shareReplay(1),
+      catchError(this.handleError)
+    );
+
+  /*
+    Additional examples, not included in the course
+  */
+
+  // Categories for drop down list
+  // Example of using pluck and distinct
+  categoryNames$ = this.productCategories$
+    .pipe(
+      mergeAll(),
+      pluck('name'),
+      distinct(),
+      toArray(),
+      tap(c => console.log('Each category', c)),
+      shareReplay(1)
+    );
+  /* END */
 
   constructor(private http: HttpClient) { }
 

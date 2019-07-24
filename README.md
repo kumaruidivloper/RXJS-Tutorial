@@ -1,30 +1,28 @@
-# Combining All Streams
+# Angular RxJS Extra Feature Added
 
-## Multiple Async Pipes
-![001_Multiple_Async_Pipes](https://user-images.githubusercontent.com/30646609/61628849-067bce80-aca1-11e9-9f5c-31fabe761031.JPG)
-![001_Multiple_Async_Pipes_1](https://user-images.githubusercontent.com/30646609/61628836-04197480-aca1-11e9-817f-9f989c193d83.JPG)
+## RxJS Operators
+![001_RxJS Operators](https://user-images.githubusercontent.com/30646609/61797169-7ecec500-ae44-11e9-884f-5e6ccc05c802.JPG)
 
-## Recap Related Data Streams
-![002_Recap_Related_Data_Streams](https://user-images.githubusercontent.com/30646609/61628839-04b20b00-aca1-11e9-8f7b-9850e25a9a02.JPG)
+## Creation Functions
+![002_Creation Functions](https://user-images.githubusercontent.com/30646609/61797171-7ecec500-ae44-11e9-8b3f-230bb7249d7b.JPG)
 
-## Recap Related Data Streams [Get It All]
-![003_Recap_Related_Data_Streams Get It All](https://user-images.githubusercontent.com/30646609/61628842-054aa180-aca1-11e9-87f7-69ee96f7fcae.JPG)
+## Debugging Observables
+![003_Debugging Observables](https://user-images.githubusercontent.com/30646609/61797159-7d9d9800-ae44-11e9-9229-fc4a56598d50.JPG)
 
-## Recap Related Data Streams [Just In Time]
-![004_Recap_Related_Data_Streams Just In Time](https://user-images.githubusercontent.com/30646609/61628845-05e33800-aca1-11e9-985f-82a5fb10b84e.JPG)
+## Data Streams
+![004_Data_Streams](https://user-images.githubusercontent.com/30646609/61797161-7d9d9800-ae44-11e9-9aae-300f6f914df2.JPG)
 
-## Combining All The Streams
-![005_Combining_All_The_Streams](https://user-images.githubusercontent.com/30646609/61628848-05e33800-aca1-11e9-8adc-e1e37c6b000c.JPG)
+## Action Streams
+![005_Action_Streams](https://user-images.githubusercontent.com/30646609/61797163-7d9d9800-ae44-11e9-896d-95180073d8c7.JPG)
 
+## Combination Operators Array
+![006_Combination_Operators Array](https://user-images.githubusercontent.com/30646609/61797164-7d9d9800-ae44-11e9-892b-b16b259c71cf.JPG)
 
+## Complete Notifications
+![007_Complete Notifications](https://user-images.githubusercontent.com/30646609/61797165-7e362e80-ae44-11e9-9480-932f5bf5286e.JPG)
 
+## Cold Obser-vs-Hot-Obser
+![008_Cold-Obser-vs-Hot-Obser](https://user-images.githubusercontent.com/30646609/61797166-7e362e80-ae44-11e9-8896-669b55797f7d.JPG)
 
-
-
-
-
-
-
-
-
-
+## Learn_More
+![010_Lear_More](https://user-images.githubusercontent.com/30646609/61797167-7e362e80-ae44-11e9-9189-2b9e635eb59a.JPG)

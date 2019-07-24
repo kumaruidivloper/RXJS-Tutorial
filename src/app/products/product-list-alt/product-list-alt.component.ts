@@ -1,11 +1,10 @@
-// import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Component, ChangeDetectionStrategy } from '@angular/core';
-// import { Subscription } from 'rxjs';
 
-import { Product } from '../product';
+import { combineLatest, Subject, EMPTY } from 'rxjs';
+import { catchError, map } from 'rxjs/operators';
+
 import { ProductService } from '../product.service';
-import { catchError } from 'rxjs/operators';
-import { EMPTY, Subject } from 'rxjs';
+import { Product } from '../product';
 
 @Component({
   selector: 'pm-product-list',
@@ -16,36 +15,33 @@ export class ProductListAltComponent {
   pageTitle = 'Products';
   private errorMessageSubject = new Subject<string>();
   errorMessage$ = this.errorMessageSubject.asObservable();
-  // errorMessage = '';
-  // selectedProductId;
 
-  products$ = this.productService.productsWithCategory$
-  .pipe(
-    catchError(err => {
-      this.errorMessageSubject.next(err);
-      return EMPTY;
-    })
-  );
+  // Products with their categories
+  // Using productsWithAdd here to pick up
+  // any newly added products
+  products$ = this.productService.productsWithAdd$
+    .pipe(
+      catchError(err => {
+        this.errorMessageSubject.next(err);
+        return EMPTY;
+      }));
 
+  // Selected product to highlight the entry
   selectedProduct$ = this.productService.selectedProduct$;
-  // products: Product[] = [];
-  // sub: Subscription;
+
+  // Combine all streams for the view
+  vm$ = combineLatest([
+    this.products$,
+    this.selectedProduct$
+  ])
+    .pipe(
+      map(([products, product]: [Product[], Product]) =>
+        ({ products, productId: product ? product.id : 0 }))
+    );
 
   constructor(private productService: ProductService) { }
 
-  // ngOnInit(): void {
-  //   this.sub = this.productService.getProducts().subscribe(
-  //     products => this.products = products,
-  //     error => this.errorMessage = error
-  //   );
-  // }
-
-  // ngOnDestroy(): void {
-  //   this.sub.unsubscribe();
-  // }
-
   onSelected(productId: number): void {
-    // console.log('Not yet implemented');
     this.productService.selectedProductChanged(productId);
   }
 }
