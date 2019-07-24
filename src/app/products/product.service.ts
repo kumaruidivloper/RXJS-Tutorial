@@ -1,16 +1,12 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 
-import { BehaviorSubject, combineLatest, EMPTY, from, merge, Subject, throwError, of, forkJoin } from 'rxjs';
-import {
-  catchError, filter, map, mergeMap, scan, shareReplay, tap, toArray, switchMap,
-  mergeAll, max, reduce, concatMap, delay
-} from 'rxjs/operators';
+import { BehaviorSubject, combineLatest, EMPTY, from, merge, Subject, throwError, of } from 'rxjs';
+import { catchError, filter, map, mergeMap, scan, shareReplay, tap, toArray, switchMap } from 'rxjs/operators';
 
-import { Product, ProductClass } from './product';
-import { ProductFromAPI } from './product-data-fromAPI';
+import { Product } from './product';
 import { ProductCategoryService } from '../product-categories/product-category.service';
-import { Supplier, SupplierClass } from '../suppliers/supplier';
+import { Supplier } from '../suppliers/supplier';
 import { SupplierService } from '../suppliers/supplier.service';
 
 @Injectable({
@@ -29,7 +25,6 @@ export class ProductService {
 
   // Combine products with categories
   // Map to the revised shape.
-  // Be sure to specify the type to ensure after the map that it knows the correct type
   productsWithCategory$ = combineLatest([
     this.products$,
     this.productCategoryService.productCategories$
@@ -45,44 +40,17 @@ export class ProductService {
     shareReplay(1)
   );
 
-  // Action Stream for adding products to the Observable
-  private productInsertedSubject = new Subject<Product>();
-  productInsertedAction$ = this.productInsertedSubject.asObservable();
-
-  // Add the newly added product via http post with concatMap
-  // And then to the full list of products with scan.
-  headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-  productsWithAdd$ = merge(
-    this.productsWithCategory$,
-    this.productInsertedAction$
-      .pipe(
-        concatMap(newProduct => {
-          newProduct.id = null;
-          return this.http.post<Product>(this.productsUrl, newProduct, { headers: this.headers })
-            .pipe(
-              tap(product => console.log('Created product', JSON.stringify(product))),
-              catchError(this.handleError)
-            );
-        }),
-      ))
-    .pipe(
-      scan((acc: Product[], value: Product) => [...acc, value]),
-      shareReplay(1)
-    );
-
   // Action stream for product selection
   // Default to 0 for no product
   // Must have a default so the stream emits at least once.
   private productSelectedSubject = new BehaviorSubject<number>(0);
-  // Expose the action as an observable for use by any components
   productSelectedAction$ = this.productSelectedSubject.asObservable();
 
   // Currently selected product
   // Used in both List and Detail pages,
   // so use the shareReply to share it with any component that uses it
-  // Location of the shareReplay matters ... won't share anything *after* the shareReplay
   selectedProduct$ = combineLatest([
-    this.productsWithAdd$,
+    this.productsWithCategory$,
     this.productSelectedAction$
   ]).pipe(
     map(([products, selectedProductId]) =>
@@ -114,8 +82,6 @@ export class ProductService {
 
   // Suppliers for the selected product
   // Only gets the suppliers it needs
-  // switchMap here instead of mergeMap so quickly clicking on the items cancels prior requests.
-  // Using mergeMap and toArray
   selectedProductSuppliers2$ = this.selectedProduct$
     .pipe(
       filter(selectedProduct => Boolean(selectedProduct)),
@@ -129,140 +95,30 @@ export class ProductService {
       )
     );
 
-  // Suppliers for the selected product
-  // Only gets the suppliers it needs
-  // switchMap here instead of mergeMap so quickly clicking on the items cancels prior requests.
-  // Using forkJoin
-  selectedProductSuppliers3$ = this.selectedProduct$
-    .pipe(
-      filter(selectedProduct => Boolean(selectedProduct)),
-      switchMap(selectedProduct =>
-        forkJoin(selectedProduct.supplierIds.map(supplierId => this.http.get<Supplier>(`${this.suppliersUrl}/${supplierId}`)))
-      ),
-      tap(suppliers => console.log('product suppliers', JSON.stringify(suppliers)))
-    );
-
   /*
-    Additional examples, not included in the course
+    Allows adding of products to the Observable
   */
 
-  // Retrieve products and map to increase price using mergeMap
-  productsWithIncreasedPrice$ = this.productsWithCategory$
-    .pipe(
-      mergeAll(),
-      map(product => ({
-        ...product,
-        price: product.price * 1.5,
-        searchKey: [product.productName]
-      }) as Product),
-      toArray(),
-      tap(data => console.log('Increase Price', JSON.stringify(data))),
-      catchError(this.handleError)
-    );
+  // Action Stream
+  private productInsertedSubject = new Subject<Product>();
+  productInsertedAction$ = this.productInsertedSubject.asObservable();
 
-  // Mapping from API fields to new shape using mergeMap and toArray
-  productsFromAPI1$ = this.http.get<ProductFromAPI[]>('api/productsFromAPI')
+  // Merge the streams
+  productsWithAdd$ = merge(
+    this.productsWithCategory$,
+    this.productInsertedAction$
+  )
     .pipe(
-      tap(data => console.log('Before mergeMap', JSON.stringify(data))),
-      mergeMap(products => products),
-      tap(data => console.log('After mergeMap', JSON.stringify(data))),
-      map(product => ({
-        id: product.p_id,
-        productName: product.p_nam,
-        productCode: product.p_cd,
-        description: product.p_des,
-        categoryId: product.p_c_fk_id,
-        price: product.p_p * 1.5
-      }) as Product),
-      tap(data => console.log('After map', JSON.stringify(data))),
-      toArray(),
-      tap(data => console.log('After toArray', JSON.stringify(data))),
-      catchError(this.handleError)
+      scan((acc: Product[], value: Product) => [...acc, value]),
+      catchError(err => {
+        console.error(err);
+        return throwError(err);
+      })
     );
-
-  // Mapping from API fields to new shape using Array map
-  productsFromAPI2$ = this.http.get<ProductFromAPI[]>('api/productsFromAPI')
-    .pipe(
-      tap(data => console.log('Before map', JSON.stringify(data))),
-      map(products => products.map(product => ({
-        id: product.p_id,
-        productName: product.p_nam,
-        productCode: product.p_cd,
-        description: product.p_des,
-        categoryId: product.p_c_fk_id,
-        price: product.p_p * 1.5
-      }) as Product)),
-      tap(data => console.log('After map', JSON.stringify(data))),
-      catchError(this.handleError)
-    );
-
-  // Mapping to a class instance
-  productsClassInstance$ = this.http.get<ProductClass[]>(this.productsUrl)
-    .pipe(
-      tap(data => console.log('Before map', JSON.stringify(data))),
-      map(products => products.map(product => {
-        const productInstance: ProductClass = Object.assign(new ProductClass(), {
-          ...product,
-          price: product.price * 1.5,
-          searchKey: [product.category]
-        });
-        productInstance.inventoryValuation = productInstance.calculateValuation();
-        return productInstance;
-      })),
-      tap(data => console.log('After map', JSON.stringify(data))),
-      catchError(this.handleError)
-    );
-
-  // Demonstrates multiple levels of the object graph
-  productsClassInstanceMultipleLevels$ = this.http.get<ProductClass[]>(this.productsUrl)
-    .pipe(
-      map(products => products.map(product => Object.assign(new ProductClass(), {
-        ...product,
-        suppliers: (product.suppliers ? product.suppliers.map(supplier => Object.assign(new SupplierClass(), {
-          ...supplier
-        })) : [])
-      })))
-    );
-
-  // Returns the product with the highest price
-  productMax$ = this.productsWithCategory$
-    .pipe(
-      mergeMap(item => item),
-      max<Product>((a, b) => a.price < b.price ? -1 : 1),
-      catchError(this.handleError)
-    );
-
-  // Totals the prices for all items
-  productsTotal$ = this.productsWithCategory$
-    .pipe(
-      mergeMap(item => item),
-      reduce<Product, number>((acc, item) => acc + item.price, 0),
-      catchError(this.handleError)
-    );
-
-  // Emits one product at a time with a delay
-  productsOneByOne$ = this.products$
-    .pipe(
-      mergeMap(item => item),
-      concatMap(item => of(item).pipe(delay(500))),
-      catchError(this.handleError)
-    );
-  /* END */
 
   constructor(private http: HttpClient,
               private productCategoryService: ProductCategoryService,
-              private supplierService: SupplierService) {
-    // To try out each of the additional examples
-    // (which are not currently bound in the UI)
-    // this.productsWithIncreasedPrice$.subscribe(console.log);
-    // this.productsFromAPI1$.subscribe(console.log);
-    // this.productsFromAPI2$.subscribe(console.log);
-    // this.productsClassInstance$.subscribe(console.log);
-    // this.productsClassInstanceMultipleLevels$.subscribe(console.log);
-    // this.productMax$.subscribe(console.log);
-    // this.productsTotal$.subscribe(console.log);
-    // this.productsOneByOne$.subscribe(console.log);
-  }
+              private supplierService: SupplierService) { }
 
   addProduct(newProduct?: Product) {
     newProduct = newProduct || this.fakeProduct();
@@ -283,8 +139,7 @@ export class ProductService {
       price: 8.9,
       categoryId: 3,
       category: 'Toolbox',
-      quantityInStock: 30,
-      supplierIds: [5, 7, 8]
+      quantityInStock: 30
     };
   }
 

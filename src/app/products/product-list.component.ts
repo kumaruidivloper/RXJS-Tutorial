@@ -46,7 +46,7 @@ export class ProductListComponent {
       })
     );
 
-  // Combine the streams for the view
+  // Combine all streams for the view
   vm$ = combineLatest([
     this.products$,
     this.categories$

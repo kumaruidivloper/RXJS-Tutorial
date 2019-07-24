@@ -15,6 +15,7 @@ export class SupplierData {
             cost: 15.95,
             minQuantity: 24
         },
+
         {
             id: 3,
             name: 'Acme Gardening Supply',

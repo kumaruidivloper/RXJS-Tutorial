@@ -29,11 +29,7 @@ export class SupplierService {
   suppliersWithConcatMap$ = of(1, 5, 8)
     .pipe(
       tap(id => console.log('concatMap source Observable', id)),
-      concatMap(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`)
-        .pipe(
-          catchError(err => of({} as Supplier)),
-          tap(console.log)
-        ))
+      concatMap(id => this.http.get<Supplier>(`${this.suppliersUrl}/${id}`))
     );
 
   suppliersWithMergeMap$ = of(1, 5, 8)
